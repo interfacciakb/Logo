@@ -27,6 +27,7 @@ public class IntroActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
+    private PrefManager prefManager1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
