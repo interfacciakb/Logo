@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_appuntamenti"
+            android:icon="@drawable/ic_event_black_24dp"
+            android:title="@string/appuntamenti" />
+        <item
+            android:id="@+id/nav_ricompense"
+            android:icon="@drawable/ic_attach_money_black_24dp"
+            android:title="@string/ricompense" />
+        <item
+            android:id="@+id/nav_scenario"
+            android:icon="@drawable/ic_landscape_black_24dp"
+            android:title="@string/scenario" />
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/settings" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_power_settings_new_black_24dp"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+</menu>
