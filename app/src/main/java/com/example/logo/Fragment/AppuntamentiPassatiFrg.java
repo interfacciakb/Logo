@@ -68,6 +68,32 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         ranks.clear();
         ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
         ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+        ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
+        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
 
     }
 
