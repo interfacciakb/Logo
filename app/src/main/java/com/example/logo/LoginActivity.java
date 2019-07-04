@@ -118,12 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
-                        // Do something when error occurred
-                        Snackbar.make(
-                                container,
-                                "Error...",
-                                Snackbar.LENGTH_LONG
-                        ).show();
+
                     }
                 }
         );

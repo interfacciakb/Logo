@@ -14,13 +14,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.logo.R;
 import com.example.logo.util.InterationWithMain;
 
-public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshListener{
+public class AppuntamentiFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshListener{
 
     //SwipeRefreshLayout swipeLayout;
     RequestQueue request;
     private String url;
     InterationWithMain createNewRequest;
-    public static String TAG="MAINFRG";
+    public static String TAG="APPUNTFRG";
     ProgressDialog progress;
 
 
@@ -42,7 +42,7 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
 
     @Override
     protected View viewOfFragment(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_appuntamenti, container, false);
         //txt_name = (TextView) v.findViewById(R.id.frg_fav_name);
         //list_my_requests = (ListView) v.findViewById(R.id.frg_my_requests);
         //swipeLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefresh);
@@ -51,14 +51,14 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
         progress.setMessage(getString(R.string.loading));
 
         /**FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.addProposalButtonMain);
-         fab.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        Intent intent = new Intent(getActivity().getApplicationContext(), CreaRichiestaActivity.class);
-        startActivity(intent);
-        }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreaRichiestaActivity.class);
+                startActivity(intent);
+            }
         });
-         */
+        */
         return v;
     }
 

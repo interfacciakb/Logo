@@ -27,6 +27,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.logo.Fragment.AppuntamentiFragment;
+import com.example.logo.Fragment.MainFragment;
 import com.example.logo.util.Bitmap;
 import com.example.logo.util.InterationWithMain;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        //changeContainer(new MainFrg(), getResources().getString(R.string.app_name), R.id.nav_main);
+        changeContainer(new MainFragment(), getResources().getString(R.string.nav_home), R.id.nav_home);
         requestQueue = Volley.newRequestQueue(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -118,9 +120,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            //changeContainer(new familyGoalFrg(), getResources().getString(R.string.nav_obiettivi), id);
+            changeContainer(new MainFragment(), getResources().getString(R.string.nav_home), id);
         } else if (id == R.id.nav_appuntamenti) {
-            //changeContainer(new familyGoalFrg(), getResources().getString(R.string.nav_obiettivi), id);
+            changeContainer(new AppuntamentiFragment(), getResources().getString(R.string.nav_appuntamenti), id);
         } else if (id == R.id.nav_ricompense) {
             //changeContainer(new familyGoalFrg(), getResources().getString(R.string.nav_obiettivi), id);
         } else if (id == R.id.nav_scenario) {
