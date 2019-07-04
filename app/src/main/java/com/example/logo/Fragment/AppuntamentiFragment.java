@@ -20,10 +20,10 @@ public class AppuntamentiFragment extends AbFrg {
         tabHost = (FragmentTabHost) root.findViewById(android.R.id.tabhost);
         tabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
 
-        tabHost.addTab(tabHost.newTabSpec("fragmentPassati").setIndicator("Appuntamenti Passati"),
+        tabHost.addTab(tabHost.newTabSpec("fragmentPassati").setIndicator("Passati"),
                 AppuntamentiPassatiFrg.class, null);
 
-        tabHost.addTab(tabHost.newTabSpec("fragmentFuturi").setIndicator("Appuntamenti Futuri"),
+        tabHost.addTab(tabHost.newTabSpec("fragmentFuturi").setIndicator("Futuri"),
                 AppuntamentiFuturiFrg.class, null);
 
 

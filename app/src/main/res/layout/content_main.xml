@@ -8,10 +8,12 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <FrameLayout android:id="@+id/fragment_container"
-        android:layout_height="match_parent"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

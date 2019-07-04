@@ -24,10 +24,7 @@
                 android:layout_marginEnd="17dp"
                 android:layout_marginRight="17dp"
                 android:layout_marginBottom="41dp"
-                android:background="@drawable/rounded_corner"
-
-                android:text="14 JUN"
-                android:textColor="@android:color/white" />
+                android:text="14 JUN"/>
 
 
             <TextView
@@ -63,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="29dp" 
+                android:layout_marginEnd="29dp"
                 android:layout_marginRight="29dp"
                 android:text="15:00"
                 android:layout_centerVertical="true"

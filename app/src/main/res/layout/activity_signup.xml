@@ -36,7 +36,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:background="#009688"
-                    android:src="@drawable/ic_food" />
+                    card_view:srcCompat="@drawable/ic_food" />
 
                 <TextView
 

@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.logo.Fragment.AppuntamentiFragment;
 import com.example.logo.Fragment.MainFragment;
 import com.example.logo.util.Bitmap;
+import com.example.logo.util.CircleImageView;
 import com.example.logo.util.InterationWithMain;
 
 import org.json.JSONArray;
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity
         final TextView caregiverEmail;
 
         String URL = "http://www.logopediapp.altervista.org/database/crud_paziente/read_condition.php?condition=codice='" + codice + "'";
-        userImage = (ImageView) headerView.findViewById(R.id.imageView);
+        userImage = (ImageView ) headerView.findViewById(R.id.imageView);
         patientName = (TextView) headerView.findViewById(R.id.patientName);
         caregiverEmail = (TextView) headerView.findViewById(R.id.caregiverEmail);
 
