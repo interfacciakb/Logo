@@ -5,7 +5,7 @@
     <color name="colorAccent">#0CBEBE</color>
 
     <!-- Screens background new color-->
-    <color name="bg_intro_slide1">#0abab5</color>
+    <color name="bg_intro_slide1">#0ABAB5</color>
     <color name="bg_intro_slide2">#229C9C</color>
     <color name="bg_intro_slide3">#20d2bb</color>
 

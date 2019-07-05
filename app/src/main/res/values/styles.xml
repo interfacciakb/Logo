@@ -25,4 +25,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="MyRaidoButton">
+        <item name="colorAccent">#ffffff</item>
+        <item name="android:textColorPrimaryDisableOnly">#ffffff</item>
+    </style>
 </resources>

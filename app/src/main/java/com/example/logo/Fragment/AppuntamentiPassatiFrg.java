@@ -1,5 +1,6 @@
 package com.example.logo.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.logo.Adapters.AppuntamentiAdapter;
 import com.example.logo.Entities.Appuntamento;
 import com.example.logo.R;
@@ -24,7 +28,6 @@ import java.util.ArrayList;
 
 
 public class AppuntamentiPassatiFrg extends AbFrg {
-
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -50,8 +53,8 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_app_passati);
         layoutManager = new LinearLayoutManager(getContext());
         //request =  Volley.newRequestQueue(getActivity().getApplicationContext());
-        //loadRank(email,apikey)
-        loadAppPassati();
+        loadRank("a1a4c3c4-9b04-472e-b1c0");
+        //loadAppPassati();
         adapter = new AppuntamentiAdapter(ranks,getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -94,49 +97,50 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
         ranks.add(new Appuntamento("15 MAY", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
         ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
-
     }
 
-    /**
-    private void loadRank(String email, String apikey){
-        String url = "ulr?email="+email+"&apikey="+apikey;
-        JsonArrayRequest soloRankRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+    private void loadRank(String codice_paziente){
+        String URL = "http://www.logopediapp.altervista.org/database/crud_terapia/read_condition.php?condition=paziente_codice=\""+codice_paziente+"\"+AND+data_fine<CURRENT_DATE+ORDER+BY+data_fine";
+        //System.out.println(URL);
 
-            private ArrayList<Appuntamento> list = new ArrayList<>();
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        // Initialize a new JsonArrayRequest instance
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
+        Request.Method.GET,
+        URL,
+        null,
+        new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
 
-                JSONObject jsonObject;
-                for(int i=0; i<response.length(); i++){
-                    try {
+                try{
 
-                        jsonObject = response.getJSONObject(i);
-                        //list.add(new Appuntamento(jsonObject.getString("name"),jsonObject.getInt("points")));
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-
+                    JSONArray jsonArray = response.getJSONArray("records");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        String data_fine = object.getString("data_fine");
+                        String luogo_appuntamento = object.getString("luogo_appuntamento");
+                        String medico = object.getString("medico_email");
+                        System.out.println(data_fine);
+                        System.out.println(luogo_appuntamento);
+                        System.out.println(medico);
+                        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
                     }
-
+                }catch (JSONException e){
+                    e.printStackTrace();
                 }
-                adapter = new AppuntamentiAdapter(ranks,getContext());
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(layoutManager);
-
-
             }
-        }, new Response.ErrorListener() {
+        },
+        new Response.ErrorListener(){
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error){
 
             }
         }
-
-
         );
-        request.add(soloRankRequest);
-    }
 
-            **/
+        // Add JsonArrayRequest to the RequestQueue
+        requestQueue.add(jsonArrayRequest);
+     }
 }
