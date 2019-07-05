@@ -45,6 +45,17 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         // email = preferences.getString("USERNAME", null);
         //apikey = preferences.getString("APIKEY", null);
 
+        loadRank("a1a4c3c4-9b04-472e-b1c0");
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        return super.onCreateView(inflater, container, savedInstanceState);
+
+
     }
 
     @Override
@@ -53,11 +64,8 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_app_passati);
         layoutManager = new LinearLayoutManager(getContext());
         //request =  Volley.newRequestQueue(getActivity().getApplicationContext());
-        loadRank("a1a4c3c4-9b04-472e-b1c0");
+
         //loadAppPassati();
-        adapter = new AppuntamentiAdapter(ranks,getContext());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(layoutManager);
         return v;
 
     }
@@ -117,6 +125,7 @@ public class AppuntamentiPassatiFrg extends AbFrg {
                 try{
 
                     JSONArray jsonArray = response.getJSONArray("records");
+                    ranks.clear();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         String data_fine = object.getString("data_fine");
@@ -125,11 +134,18 @@ public class AppuntamentiPassatiFrg extends AbFrg {
                         System.out.println(data_fine);
                         System.out.println(luogo_appuntamento);
                         System.out.println(medico);
-                        ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
+
+                        ranks.add(new Appuntamento(data_fine, luogo_appuntamento, medico, data_fine));
                     }
+
+                    adapter = new AppuntamentiAdapter(ranks,getContext());
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(layoutManager);
                 }catch (JSONException e){
                     e.printStackTrace();
                 }
+
+
             }
         },
         new Response.ErrorListener(){
