@@ -42,6 +42,7 @@ public class SignupActivity2 extends AppCompatActivity implements DatePickerDial
     private Button next;
     private TextView dateText;
     private String caregiverEmail;
+    private String sex = "";
     RequestQueue requestQueue;
 
     @Override
@@ -81,21 +82,35 @@ public class SignupActivity2 extends AppCompatActivity implements DatePickerDial
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
                 if (null != rb && checkedId > -1) {
-                   radioSelected = rb.getText().toString();
+                    radioSelected = rb.getText().toString();
+                    sex = " ";
                 }
 
             }
         });
 
-
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                procedi();
+                controllaCampi();
             }
         });
 
+    }
+
+    private void controllaCampi() {
+        String nomePaziente = name.getText().toString();
+        String cognomePaziente = surname.getText().toString();
+        String cfPaziente = cf.getText().toString();
+        String dataNascitaPaziente = dateText.getText().toString();
+        String sessoPaziente = sex;
+        if(nomePaziente.equalsIgnoreCase("") || cognomePaziente.equalsIgnoreCase("") ||
+                cfPaziente.equalsIgnoreCase("") || dataNascitaPaziente.equalsIgnoreCase("") ||
+                sessoPaziente.equalsIgnoreCase("") ){
+            Snackbar.make(findViewById(android.R.id.content), "Completare correttamente tutti i campi!", Snackbar.LENGTH_LONG).show();
+        } else{
+            procedi();
+        }
     }
 
     private void patientData(String codiceMedico){
@@ -185,6 +200,4 @@ public class SignupActivity2 extends AppCompatActivity implements DatePickerDial
         startActivity(intentProcedi);
 
     }
-
-
 }

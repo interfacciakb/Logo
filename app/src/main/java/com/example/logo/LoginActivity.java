@@ -76,11 +76,10 @@ public class LoginActivity extends AppCompatActivity {
         String passwordText = password.getText().toString();
         if(emailText.equalsIgnoreCase("") ||
                 passwordText.equalsIgnoreCase("") ){
-            Snackbar.make(container,"Completare correttamente tutti i campi!",Snackbar.LENGTH_LONG).show();
+                //Snackbar.make(container,"Completare correttamente tutti i campi!",Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(android.R.id.content), "Completare correttamente tutti i campi!", Snackbar.LENGTH_LONG).show();
         } else{
             login(emailText,passwordText);
-
-
         }
     }
     private void login(String emailLogin,String passwordLogin){
@@ -96,22 +95,26 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try{
+                            //String messageServer = response.getString("message");
+                            //if(messageServer.isEmpty()){
+                                JSONArray jsonArray = response.getJSONArray("records");
 
-                            JSONArray jsonArray = response.getJSONArray("records");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject object = jsonArray.getJSONObject(i);
-                                String email = object.getString("email");
-                                System.out.println(email);
-                                if(email!=null){
-                                    Intent intentLogin = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intentLogin);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    String email = object.getString("email");
+                                    System.out.println(email);
+                                    if(email!=null){
+                                        Intent intentLogin = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intentLogin);
+                                    }
                                 }
-
-                            }
+                            //}else{
+                            //    System.out.println(messageServer);
+                            //}
                         }catch (JSONException e){
                             e.printStackTrace();
+                            snackbarError();
                         }
                     }
                 },
@@ -133,8 +136,9 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intentRegistrati);
     }
 
-
-
+    private void snackbarError(){
+        Snackbar.make(findViewById(android.R.id.content), "Email o Password errate!", Snackbar.LENGTH_LONG).show();
+    }
 
     private String trimMessage(String json, String key){
         String trimmedString = null;

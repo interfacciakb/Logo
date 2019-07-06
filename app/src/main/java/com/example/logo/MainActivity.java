@@ -24,7 +24,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.logo.Fragment.AppuntamentiFragment;
@@ -36,6 +35,9 @@ import com.example.logo.util.InterationWithMain;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, InterationWithMain {
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             //changeContainer(new familyGoalFrg(), getResources().getString(R.string.nav_obiettivi), id);
         } else if (id == R.id.nav_logout) {
-
+            logout();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -215,7 +217,10 @@ public class MainActivity extends AppCompatActivity
         } else if(tag.compareTo(rulesFrg.TAG)==0) {
             changeContainer(new TimePickerFragment(), "Seleziona orario", 12);
         }*/
+    }
 
-
+    public void logout(){
+        Intent intentLogout = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intentLogout);
     }
 }
