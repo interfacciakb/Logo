@@ -115,49 +115,49 @@ public class AppuntamentiPassatiFrg extends AbFrg {
 
         // Initialize a new JsonArrayRequest instance
         JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
-        Request.Method.GET,
-        URL,
-        null,
-        new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-                try{
 
-                    JSONArray jsonArray = response.getJSONArray("records");
-                    ranks.clear();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        String data_fine = object.getString("data_fine");
-                        String luogo_appuntamento = object.getString("luogo_appuntamento");
-                        String medico = object.getString("medico_email");
-                        System.out.println(data_fine);
-                        System.out.println(luogo_appuntamento);
-                        System.out.println(medico);
+                        try{
 
-                        ranks.add(new Appuntamento(data_fine, luogo_appuntamento, medico, data_fine));
+                            JSONArray jsonArray = response.getJSONArray("records");
+                            ranks.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                String data_fine = object.getString("data_fine");
+                                String luogo_appuntamento = object.getString("luogo_appuntamento");
+                                String medico = object.getString("medico_email");
+                                System.out.println(data_fine);
+                                System.out.println(luogo_appuntamento);
+                                System.out.println(medico);
+
+                                ranks.add(new Appuntamento(data_fine, luogo_appuntamento, medico, data_fine));
+                            }
+
+                            adapter = new AppuntamentiAdapter(ranks,getContext());
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(layoutManager);
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+
+
                     }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
 
-                    adapter = new AppuntamentiAdapter(ranks,getContext());
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(layoutManager);
-                }catch (JSONException e){
-                    e.printStackTrace();
+                    }
                 }
-
-
-            }
-        },
-        new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-
-            }
-        }
         );
 
         // Add JsonArrayRequest to the RequestQueue
         requestQueue.add(jsonArrayRequest);
-     }
+    }
 }
