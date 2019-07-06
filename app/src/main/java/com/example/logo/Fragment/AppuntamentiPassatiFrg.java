@@ -45,9 +45,7 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         // email = preferences.getString("USERNAME", null);
         //apikey = preferences.getString("APIKEY", null);
 
-        loadRank("a1a4c3c4-9b04-472e-b1c0");
-
-
+        loadAppuntamenti("a1a4c3c4-9b04-472e-b1c0");
     }
 
     @Override
@@ -64,10 +62,8 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_app_passati);
         layoutManager = new LinearLayoutManager(getContext());
         //request =  Volley.newRequestQueue(getActivity().getApplicationContext());
-
         //loadAppPassati();
         return v;
-
     }
 
     @Override
@@ -107,57 +103,102 @@ public class AppuntamentiPassatiFrg extends AbFrg {
         ranks.add(new Appuntamento("21 MAY", "Policlinico", "Dott.ssa Bruna", "17:00"));
     }
 
-    private void loadRank(String codice_paziente){
+    private void loadAppuntamenti(String codice_paziente){
         String URL = "http://www.logopediapp.altervista.org/database/crud_terapia/read_condition.php?condition=paziente_codice=\""+codice_paziente+"\"+AND+data_fine<CURRENT_DATE+ORDER+BY+data_fine";
-        //System.out.println(URL);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.GET, URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            JSONArray jsonArray = response.getJSONArray("records");
+                            ranks.clear();
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                String data_fine = object.getString("data_fine");
+                                String luogo_appuntamento = object.getString("luogo_appuntamento");
+                                String medico = object.getString("medico_email");
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+                                if(luogo_appuntamento=="null"){
+                                    luogo_appuntamento = "-";
+                                }
 
-        // Initialize a new JsonArrayRequest instance
-        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
-        Request.Method.GET,
-        URL,
-        null,
-        new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                
-
-                try{
-
-                    JSONArray jsonArray = response.getJSONArray("records");
-                    ranks.clear();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        String data_fine = object.getString("data_fine");
-                        String luogo_appuntamento = object.getString("luogo_appuntamento");
-                        String medico = object.getString("medico_email");
-                        System.out.println(data_fine);
-                        System.out.println(luogo_appuntamento);
-                        System.out.println(medico);
-
-                        ranks.add(new Appuntamento(data_fine, luogo_appuntamento, medico, data_fine));
+                                loadDoctorSurname(data_fine, luogo_appuntamento,medico);
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
                     }
+                }, new Response.ErrorListener() {
 
-                    adapter = new AppuntamentiAdapter(ranks,getContext());
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(layoutManager);
-                }catch (JSONException e){
-                    e.printStackTrace();
-                }
-
-
-            }
-        },
-        new Response.ErrorListener(){
             @Override
-            public void onErrorResponse(VolleyError error){
-
+            public void onErrorResponse(VolleyError error) {
             }
-        }
-        );
+        });
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(jsonObjReq);
+    }
 
-        // Add JsonArrayRequest to the RequestQueue
-        requestQueue.add(jsonArrayRequest);
-     }
+    public void loadDoctorSurname(final String data_fine, final String luogo_appuntamento, final String email_medico)
+    {
+        String URL = "http://www.logopediapp.altervista.org/database/crud_medico/read_email.php?email="+email_medico;
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(
+                Request.Method.GET, URL, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            JSONArray jsonArray = response.getJSONArray("records");
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                String cognome_medico = object.getString("cognome");
+                                String sesso_medico = object.getString("sesso");
+                                String medico = "";
+                                if(sesso_medico.equalsIgnoreCase("u")){
+                                    medico = "Dott. " + cognome_medico;
+                                }else{
+                                    medico = "Dott.ssa " + cognome_medico;
+                                }
+
+                                String data_appuntamento = createDataAppuntamento(data_fine);
+                                String orario_appuntamento = createOrarioAppuntamento(data_fine);
+
+                                ranks.add(new Appuntamento(data_appuntamento, luogo_appuntamento, medico, orario_appuntamento));
+                            }
+                            adapter = new AppuntamentiAdapter(ranks,getContext());
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(layoutManager);
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        Volley.newRequestQueue(getActivity().getApplicationContext()).add(jsonObjReq);
+    }
+
+    private String createDataAppuntamento(String data){
+        String day = data.substring(8,11);
+        String month = data.substring(5,7);
+        int monthInt = Integer.parseInt(month);
+
+        String nameMonths[] = {"GEN","FEB","MAR","APR","MAG","GIU","LUG","AGO","SET","OTT","NOV","DIC"};
+
+        String onlyData = day + nameMonths[monthInt-1];
+
+        return onlyData;
+    }
+
+    private String createOrarioAppuntamento(String data){
+        String time = data.substring(11,16);
+
+        return time;
+    }
 }
+
