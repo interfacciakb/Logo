@@ -23,24 +23,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.example.logo.util.Bitmap.getStringFromBitmap;
-import static com.example.logo.util.TrimMessage.trimMessage;
 
 public class SignupActivity3 extends AppCompatActivity {
     private ImageView viewImage;
@@ -162,6 +157,14 @@ public class SignupActivity3 extends AppCompatActivity {
     public void registrazione_paziente(){
 
         String urlPaziente = "http://logopediapp.altervista.org/database/crud_paziente/update.php";
+
+        System.out.println(codice);
+        System.out.println(cf);
+        System.out.println(nome);
+        System.out.println(cognome);
+        System.out.println(sesso);
+        System.out.println(formattedData);
+        System.out.println(immagine);
 
         JSONObject json = new JSONObject();
         try {
