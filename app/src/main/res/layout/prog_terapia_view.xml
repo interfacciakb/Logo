@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:background="@drawable/rounded_corner"
+            android:id="@+id/data_appuntamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="41dp"
+            android:textColor="@android:color/white"
+            android:text="14 JUN"/>
+
+
+
+        <ImageView android:id="@+id/arrow_expand_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_arrow_down"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="29dp"
+            android:layout_marginRight="29dp"
+            android:layout_centerVertical="true"/>
+
+        <ProgressBar
+            android:scaleY="3"
+            android:progress="25"
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@+id/arrow_expand_imageview"
+            android:layout_toLeftOf="@+id/arrow_expand_imageview"
+            android:layout_toEndOf="@+id/data_appuntamento"
+            android:layout_toRightOf="@+id/data_appuntamento"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

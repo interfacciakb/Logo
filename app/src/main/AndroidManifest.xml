@@ -19,9 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".SvolgimentoActivity"
+            android:label="@string/title_activity_svolgimento"
+            ></activity>
+        <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignupActivity3" />
         <activity android:name=".SignupActivity2" />
         <activity android:name=".SignupActivity" />

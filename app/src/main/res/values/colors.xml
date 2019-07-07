@@ -41,6 +41,11 @@
     <color name="dot_light_screen2">#8cf9eb</color>
     <color name="dot_light_screen3">#93c6fd</color>
 
+
+
+    <color name="primary_green">#6a8136</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background_card">#FEFEFE</color>
     <array name="array_dot_active">
         <item>@color/dot_light_intro_slide1</item>
         <item>@color/dot_light_intro_slide2</item>
