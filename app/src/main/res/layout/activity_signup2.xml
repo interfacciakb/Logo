@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:hint="Codice Fiscale"
-                android:inputType="textPersonName"
+                android:inputType="textCapCharacters"
                 android:padding="8dp"
                 android:textSize="14sp" />
         </android.support.v7.widget.CardView>
@@ -114,6 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="gg/mm/aaaa"
+                    android:layout_gravity="center_vertical"
                     android:textColor="@android:color/white"
                     android:textSize="24sp" />
             </LinearLayout>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg_intro_slide1">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@color/bg_intro_slide1">
+
+                <TextView
+                    android:id="@+id/textViewPatient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/bg_intro_slide1"
+                    android:layout_gravity="center"
+                    android:text="Paziente"
+                    android:textColor="@android:color/white" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/viewImage"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:clickable="true"
+                    android:src="@drawable/icon_code_patient"
+                    app:civ_border_width="2dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="40dp"
+                    app:civ_border_color="@android:color/white"/>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/editTextCf_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp">
+
+                    <EditText
+                        android:id="@+id/editTextCf"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/white"
+                        android:hint="Codice Fiscale"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/editTextName_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/editTextSurname_cardview"
+                    android:layout_marginBottom="30dp">
+
+                    <EditText
+                        android:id="@+id/editTextName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:hint="Nome"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/editTextSurname_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/radioSex_cardview1">
+
+                    <EditText
+                        android:id="@+id/editTextSurname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:hint="Cognome"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/radioSex_cardview1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/radioSex_cardview"
+                    android:layout_marginTop="40dp"
+                    app:cardBackgroundColor="@color/bg_intro_slide1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Data di nascita"
+                            android:textColor="@android:color/white" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/show_dialog"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:text="Seleziona Data"
+                                android:textColor="@android:color/white" />
+
+
+                            <TextView
+                                android:id="@+id/date_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="gg/mm/aaaa"
+                                android:textColor="@android:color/white"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/radioSex_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/nextSignup2"
+                    android:layout_marginTop="40dp"
+                    app:cardBackgroundColor="@color/bg_intro_slide1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewSex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@color/bg_intro_slide1"
+                            android:text="Sesso"
+                            android:textColor="@android:color/white" />
+
+                        <RadioGroup
+                            android:id="@+id/radioSex"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radioButton1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="M"
+                                android:textSize="18sp"
+                                android:theme="@style/MyRaidoButton" />
+
+                            <RadioButton
+                                android:id="@+id/radioButton2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="F"
+                                android:textSize="18sp"
+                                android:theme="@style/MyRaidoButton" />
+
+                        </RadioGroup>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <View style="@style/Divider"
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/login"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/textViewCaregiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/bg_intro_slide1"
+                    android:layout_gravity="center"
+                    android:text="Caregiver"
+                    android:textColor="@android:color/white" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/editTextEmail_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/editTextPassword_cardview"
+                    android:layout_marginTop="25dp">
+
+                    <EditText
+                        android:id="@+id/editTextEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/doctor_code_cardview"
+                        android:background="@android:color/white"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:hint="Email Caregiver"
+                        android:inputType="textPersonName"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/editTextPassword_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/nextSignup3"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="80dp">
+
+                    <EditText
+                        android:id="@+id/editTextPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/editTextEmail_cardview"
+                        android:background="@android:color/white"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
+                </android.support.v7.widget.CardView>
+
+                <Button
+                    android:id="@+id/nextSignup3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/save"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>

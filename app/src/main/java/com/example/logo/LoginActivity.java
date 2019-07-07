@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void login(String emailLogin,String passwordLogin){
-        String URL = "http://www.logopediapp.altervista.org/database/crud_medico/read_condition.php?email="+emailLogin+"&password="+passwordLogin;
+        String URL = "http://www.logopediapp.altervista.org/database/crud_caregiver/read_condition.php?email="+emailLogin+"&password="+passwordLogin;
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 

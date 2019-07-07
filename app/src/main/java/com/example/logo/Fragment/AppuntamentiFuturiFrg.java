@@ -45,7 +45,7 @@ public class AppuntamentiFuturiFrg extends AbFrg {
         // email = preferences.getString("USERNAME", null);
         //apikey = preferences.getString("APIKEY", null);
 
-        loadAppuntamenti("a1a4c3c4-9b04-472e-b1c0");
+        loadAppuntamenti("1234");
 
     }
 
@@ -63,14 +63,6 @@ public class AppuntamentiFuturiFrg extends AbFrg {
 
     @Override
     protected void onResumeReload(View v) {
-
-    }
-
-    private void loadAppFuturi(){
-        ranks.clear();
-        ranks.add(new Appuntamento("15 JUL", "Ospedaletto", "Dott.ssa Bruni", "16:00"));
-        ranks.add(new Appuntamento("21 JUL", "Policlinico", "Dott.ssa Bruna", "17:00"));
-        ranks.add(new Appuntamento("28 JUL", "San Paolo", "Dott.ssa Bruno", "15:00"));
 
     }
 

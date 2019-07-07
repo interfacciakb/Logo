@@ -12,9 +12,9 @@
     <string name="invalid_password">Password non valida</string>
     <string name="login_failed">"impossibile accedere"</string>
     <string name="title_activity_welcome">Home Screen</string>
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="start">GOT IT</string>
+    <string name="next">AVANTI</string>
+    <string name="skip">SALTA</string>
+    <string name="start">HO CAPITO</string>
 
     <string name="slide_1_title">Correggi!</string>
     <string name="slide_1_desc">Correggi le risposte agli esercizi del tuo bambino, in contemporanea al loro svolgimento!</string>
@@ -23,7 +23,7 @@
     <string name="slide_2_desc">Customizza scenari di gioco, personaggi giocabili e ricompense, per far sì che l\'app incontri i gusti del tuo bambino!</string>
 
     <string name="slide_3_title">Monitora!</string>
-    <string name="slide_3_desc">Monitorare i miglioramenti del tuo bambino con l\'aiuto di grafici, registrazioni audio e classifiche!</string>
+    <string name="slide_3_desc">Monitora i miglioramenti del tuo bambino con l\'aiuto di grafici, registrazioni audio e classifiche!</string>
 
     <string name="slide_4_title">World Travel</string>
     <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
@@ -31,7 +31,7 @@
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
     <string name="insert_doctor_code">Inserisci qui il codice univoco di accesso fornito dal tuo medico curante!</string>
-    <string name="hint_code">Codice Dottore</string>
+    <string name="hint_code">Codice Paziente</string>
     <string name="male">M</string>
     <string name="female">F</string>
     <string name="end">Fine</string>
@@ -62,6 +62,8 @@
     <string name="loading">loading...</string>
     <string name="nav_home">Homepage</string>
     <string name="nav_appuntamenti">Appuntamenti</string>
+    <string name="nav_settings">Impostazioni</string>
+    <string name="save">Salva</string>
 
 
 </resources>
