@@ -57,8 +57,6 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
         super.onActivityCreated(savedInstanceState);
         request =  Volley.newRequestQueue(getActivity().getApplicationContext());
 
-
-
     }
 
 
