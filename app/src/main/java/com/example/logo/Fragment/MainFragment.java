@@ -13,7 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.logo.Adapters.ExpandableRecyclerAdapter;
 import com.example.logo.Adapters.ProgrammazioneTerapiaAdapter;
@@ -22,8 +26,13 @@ import com.example.logo.Entities.Svolgimento;
 import com.example.logo.R;
 import com.example.logo.util.InterationWithMain;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import lecho.lib.hellocharts.model.Axis;
@@ -42,6 +51,8 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
     InterationWithMain createNewRequest;
     public static String TAG="MAINFRG";
     ProgressDialog progress;
+    int eserciziTot = 0;
+    HashMap<String, Integer> hashMap = new HashMap<>();
 
     private ProgrammazioneTerapiaAdapter mAdapter;
 
@@ -56,12 +67,14 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         request =  Volley.newRequestQueue(getActivity().getApplicationContext());
-
     }
 
 
     @Override
     protected View viewOfFragment(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getTerapie("1234");
+
+
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         LineChartView lineChartView = v.findViewById(R.id.chart);
@@ -154,7 +167,6 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
         recyclerView.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener(){
 
         });
-
         return v;
     }
 
@@ -172,4 +184,153 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
         //swipeLayout.setRefreshing(false);
     }
 
+
+    private void getTerapie(String codicePaziente){
+        String URL = "http://www.logopediapp.altervista.org/database/crud_terapia/read_condition.php?condition=paziente_codice='" +codicePaziente+"'+AND+month(data_inizio)+=+MONTH(current_date)+ORDER+BY+data_inizio";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+
+        // Initialize a new JsonArrayRequest instance
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try{
+
+                            JSONArray jsonArray = response.getJSONArray("records");
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                String data_inizio = object.getString("data_inizio");
+                                String id_terapia = object.getString("id");
+
+                                System.out.println(data_inizio);
+                                System.out.println(id_terapia);
+                                getProgTerapie(id_terapia, data_inizio);
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+
+                    }
+                }
+        );
+
+        // Add JsonArrayRequest to the RequestQueue
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    private void getProgTerapie(final String id_terapia, final String data_inizio){
+        String URL = "http://www.logopediapp.altervista.org/database/crud_programmazione_terapia/read_condition.php?condition=terapia_id='" +id_terapia+"'+ORDER+BY+id";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+
+        // Initialize a new JsonArrayRequest instance
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            JSONArray jsonArray = response.getJSONArray("records");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                String id_progr_terapia = object.getString("id");
+                                String data_inizio_terapia = data_inizio;
+
+                                System.out.println(id_progr_terapia);
+                                System.out.println(data_inizio_terapia);
+
+
+                                getSvolgimento(id_terapia, id_progr_terapia, data_inizio_terapia);
+                            }
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+
+                    }
+                }
+        );
+
+        // Add JsonArrayRequest to the RequestQueue
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    private void getSvolgimento(final String id_terapia, final String id_progr_terapia, String data_inizio_terapia){
+        String URL = "http://www.logopediapp.altervista.org/database/crud_svolgimento/read_condition.php?condition=programmazione_terapia_id='" +id_progr_terapia+"'+ORDER+BY+id";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+
+        // Initialize a new JsonArrayRequest instance
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            JSONArray jsonArray = response.getJSONArray("records");
+                            int contaEsercizi = jsonArray.length();
+                            int contaEsCorretti = 0;
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject object = jsonArray.getJSONObject(i);
+                                String corretto = object.getString("corretto");
+                                if(corretto.equalsIgnoreCase("si")){
+                                    contaEsCorretti++;
+                                }
+                            }
+                            System.out.println(id_terapia + " - Prog " + id_progr_terapia + " - TOT " + contaEsercizi + " - corretti " + contaEsCorretti);
+
+                            if(hashMap.isEmpty()){
+                                hashMap.put(id_terapia,contaEsercizi);
+                            }else{
+                                if(hashMap.containsKey(id_terapia)){
+                                    int numEserciziPrec = hashMap.get(id_terapia);
+                                    int tot = numEserciziPrec + contaEsercizi;
+                                    hashMap.remove(id_terapia);
+                                    hashMap.put(id_terapia,tot);
+                                }else{
+                                    hashMap.put(id_terapia,contaEsercizi);
+                                }
+                            }
+
+                            System.out.println(id_terapia+" ---- "+hashMap.get(id_terapia));
+
+                            //System.out.println("SINGOLO - " + eserciziTot);
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){
+                        // Do something when error occurred
+
+                    }
+                }
+        );
+
+        // Add JsonArrayRequest to the RequestQueue
+        requestQueue.add(jsonArrayRequest);
+    }
 }
