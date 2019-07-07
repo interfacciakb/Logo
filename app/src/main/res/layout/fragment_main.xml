@@ -5,16 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.MainFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="30dp"/>
+
         <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="20dp"
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

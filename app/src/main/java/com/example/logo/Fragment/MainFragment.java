@@ -2,6 +2,7 @@ package com.example.logo.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
@@ -21,8 +22,17 @@ import com.example.logo.Entities.Svolgimento;
 import com.example.logo.R;
 import com.example.logo.util.InterationWithMain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.view.LineChartView;
 
 public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshListener{
 
@@ -55,6 +65,56 @@ public class MainFragment extends AbFrg implements SwipeRefreshLayout.OnRefreshL
     @Override
     protected View viewOfFragment(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
+
+        LineChartView lineChartView = v.findViewById(R.id.chart);
+
+        String[] axisData = {"01/06", "08/06", "15/06", "22/06", "29/06"};
+        int[] yAxisData = {50, 20, 25, 100, 20};
+
+        List yAxisValues = new ArrayList();
+        List axisValues = new ArrayList();
+        Line line = new Line(yAxisValues);
+
+        for(int i = 0; i < axisData.length; i++){
+            axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+        }
+
+        for (int i = 0; i < yAxisData.length; i++){
+            yAxisValues.add(new PointValue(i, yAxisData[i]));
+        }
+
+        List lines = new ArrayList();
+        lines.add(line);
+
+        LineChartData data = new LineChartData();
+        data.setLines(lines);
+
+        lineChartView.setLineChartData(data);
+
+        Axis axis = new Axis();
+        axis.setValues(axisValues);
+        data.setAxisXBottom(axis);
+
+        Axis yAxis = new Axis();
+        data.setAxisYLeft(yAxis);
+
+        line.setColor(Color.parseColor("#0CBEBE"));
+
+        axis.setTextSize(14);
+        axis.setHasSeparationLine(true);
+        axis.setTextColor(Color.parseColor("#217070"));
+        yAxis.setTextColor(Color.parseColor("#217070"));
+        yAxis.setTextSize(14);
+        yAxis.setHasSeparationLine(true);
+        yAxis.setName("Percentuale di successo");
+        axis.setName("Data inizio terapia");
+        Viewport viewport = new Viewport(lineChartView.getMaximumViewport());
+
+        viewport.top =100;
+        lineChartView.setMaximumViewport(viewport);
+        lineChartView.setCurrentViewport(viewport);
+        lineChartView.animate();
+
         Svolgimento svolgimento11 = new Svolgimento("123456","12","si",3, "Riconoscimento parola: balena");
         Svolgimento svolgimento12 = new Svolgimento("1","12","si",3, "Riconoscimento parola: balena");
         Svolgimento svolgimento13 = new Svolgimento("1","12","si",3, "Riconoscimento parola: balena");
